@@ -1,7 +1,7 @@
 import fastify from "fastify";
 import cors from "@fastify/cors";
 import { connection } from "./db/db.js";
-// import { config } from "./db/config/index.js";
+import { config } from "./db/config/index.js";
 import { env } from "node:process";
 
 const app = fastify({
@@ -23,6 +23,13 @@ app.get("/", (req, res) => {
     status: "UP",
     message: "Server is OK!",
   });
+});
+
+app.get("/categorias", async (req, res) => {
+  const query = "SELECT * FROM categorias";
+  const result = await config.query(query);
+  console.log(`QUERY: ${query}`);
+  return result.rows;
 });
 
 app.listen({ port: PORT }, (err, address) => {
