@@ -9,7 +9,7 @@ const app = fastify({
 });
 
 const PORT = 3000;
-const HOST = `localhost`;
+// const HOST = `localhost`;
 
 app.register(cors, {
   orign: "*",
@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
   });
 });
 
-app.listen({ host: HOST, port: PORT }, (err, address) => {
+app.listen({ port: PORT }, (err, address) => {
   if (err) throw err;
   app.log.info(`Server listening on ${address}`);
   console.log(`Server is now listenig on machine IP: ${address}`);
